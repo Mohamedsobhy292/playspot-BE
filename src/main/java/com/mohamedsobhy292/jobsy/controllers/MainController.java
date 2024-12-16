@@ -15,40 +15,9 @@ import java.util.HashMap;
 
 @RestController
 public class MainController {
-
-    private final JobService jobService;
-
-    public MainController(JobService jobService) {
-        this.jobService = jobService;
-    }
-
-
+    
     @GetMapping("/")
-    ResponseEntity<?> getMain() {
-
-        try {
-            Job jobToSave = new Job();
-            jobToSave.setCity("shebiin");
-            jobToSave.setDescription("description");
-            jobToSave.setTitle("job title");
-            jobToSave.setType(JobType.valueOf("PART_TIME"));
-            Company company = new Company();
-            company.setName("name");
-            company.setId(1L);
-            company.setAddress("address");
-            jobToSave.setCompany(company);
-            Job res = jobService.saveJob(jobToSave);
-            return ResponseEntity.status(HttpStatus.OK).body(res);
-
-        } catch (Exception e) {
-            HashMap<String, String> returnValue = new HashMap<String, String>();
-            returnValue.put("mido", "message");
-            returnValue.put("message", e.getMessage());
-
-
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(returnValue);
-        }
-
-
+    ResponseEntity<String> getMain() {
+        return ResponseEntity.status(HttpStatus.OK).body("MIDO");
     }
 }

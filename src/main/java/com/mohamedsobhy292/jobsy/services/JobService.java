@@ -5,6 +5,8 @@ import com.mohamedsobhy292.jobsy.repositories.JobRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class JobService {
     private final JobRepository jobRepository;
@@ -19,4 +21,7 @@ public class JobService {
     }
 
 
+    public List<Job> getAll() {
+        return jobRepository.findAll();
+    }
 }
