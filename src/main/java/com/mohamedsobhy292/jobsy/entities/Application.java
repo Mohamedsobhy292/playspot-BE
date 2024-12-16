@@ -1,9 +1,16 @@
 package com.mohamedsobhy292.jobsy.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
-import java.util.List;
-
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "Application")
 public class Application {
     @Id
@@ -11,14 +18,17 @@ public class Application {
     private Long id;
 
     private String name;
+    @Column(unique = true)
     private String email;
 
     @ManyToOne
     @JoinColumn(nullable = false)
     private Job job;
 
-    @OneToMany()
+
+    @ManyToOne()
     @JoinColumn(nullable = false)
-    private List<ApplicationStatus> applicationStatus;
+    @ColumnDefault("1")
+    private ApplicationStatus applicationStatus;
 
 }
