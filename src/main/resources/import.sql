@@ -2,6 +2,10 @@ INSERT INTO company(id, address, name) VALUES (1, 'hauptstrasse 14', 'Jobsy');
 INSERT INTO company(id, address, name) VALUES (2, 'kreuzberg 14', 'Meta');
 INSERT INTO company(id, address, name) VALUES (3, 'OstKreuz 200', 'Google');
 
+INSERT INTO skill(id, name) VALUES (1, 'javascript');
+INSERT INTO skill(id, name) VALUES (2, 'react');
+INSERT INTO skill(id, name) VALUES (3, 'typescript');
+
 
 INSERT INTO job(id, city, description, title , type, company_id) VALUES (1, 'berlin', 'job description', 'Software engineer', 'FULL_TIME', 1);
 INSERT INTO job(id, city, description, title , type, company_id) VALUES (2, 'berlin', 'job description', 'frontend engineer', 'FULL_TIME', 1);
@@ -17,3 +21,7 @@ INSERT INTO application(id, email, name, job_id) VALUES (1, 'mohamedsobhy292@gma
 INSERT INTO application(id, email, name, job_id) VALUES (2, 'mohamedsobhy2922@gmail.com', 'Mohamed Sobhy', 1);
 INSERT INTO application(id, email, name, job_id) VALUES (3, 'mohamedsobhy2921@gmail.com', 'Mohamed Sobhy', 1);
 INSERT INTO application(id, email, name, job_id) VALUES (4, 'mohamedsobhy2924@gmail.com', 'Mohamed Sobhy', 1);
+
+INSERT INTO skill_job(job_id, skill_id) VALUES (1, 1);
+INSERT INTO skill_job(job_id, skill_id) VALUES (1, 2);
+INSERT INTO skill_job(job_id, skill_id) VALUES (1, 3);

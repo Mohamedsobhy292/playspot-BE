@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -33,4 +35,7 @@ public class Job {
     @ManyToOne
     @JoinColumn(nullable = false)
     private Company company;
+
+    @ManyToMany(mappedBy = "job")
+    private List<Skill> skill;
 }
