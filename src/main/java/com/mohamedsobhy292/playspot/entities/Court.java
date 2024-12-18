@@ -1,4 +1,4 @@
-package com.mohamedsobhy292.jobsy.entities;
+package com.mohamedsobhy292.playspot.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -10,16 +10,23 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Company")
-public class Company {
+@Entity(name = "Court")
+public class Court {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, updatable = false, columnDefinition = "serial")
     private Long id;
 
     @Column(nullable = false)
     private String name;
-    @Column(nullable = false)
-    private String address;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Venue venue;
+
+    @OneToOne()
+    @JoinColumn(nullable = false)
+    private CourtType courtType;
 
 }

@@ -1,4 +1,4 @@
-package com.mohamedsobhy292.jobsy.entities;
+package com.mohamedsobhy292.playspot.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -6,20 +6,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "ApplicationStatus")
-public class ApplicationStatus {
+@Entity(name = "BookingStatus")
+public class BookingStatus {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, updatable = false, columnDefinition = "serial")
     private Long id;
 
     @Column(nullable = false)
     private String name;
-
 
 }

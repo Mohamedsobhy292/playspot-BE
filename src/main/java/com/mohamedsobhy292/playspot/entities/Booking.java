@@ -1,4 +1,4 @@
-package com.mohamedsobhy292.jobsy.entities;
+package com.mohamedsobhy292.playspot.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,24 +11,22 @@ import org.hibernate.annotations.ColumnDefault;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Application")
-public class Application {
+@Entity(name = "Booking")
+public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(nullable = false, updatable = false, columnDefinition = "serial")
     private Long id;
 
     private String name;
-    @Column(unique = true)
-    private String email;
 
     @ManyToOne
     @JoinColumn(nullable = false)
-    private Job job;
-
+    private Venue venue;
 
     @ManyToOne()
     @JoinColumn(nullable = false)
     @ColumnDefault("1")
-    private ApplicationStatus applicationStatus;
+    private BookingStatus bookingStatus;
 
 }
