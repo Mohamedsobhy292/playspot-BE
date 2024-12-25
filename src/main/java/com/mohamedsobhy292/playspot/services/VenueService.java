@@ -5,6 +5,8 @@ import com.mohamedsobhy292.playspot.entities.Address;
 import com.mohamedsobhy292.playspot.entities.Venue;
 import com.mohamedsobhy292.playspot.repositories.AddressRepository;
 import com.mohamedsobhy292.playspot.repositories.VenueRepository;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -23,16 +25,14 @@ public class VenueService {
         this.addressRepository = addressRepository;
     }
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     public Venue save(VenueDTO venue) {
         Optional<Address> address = addressRepository.findById(Long.parseLong(venue.getAddress_id()));
-        System.out.println(venue.getAddress_id());
-        System.out.println(address);
 
-        Venue newVenue = new Venue();
-        newVenue.setName(venue.getName());
-        newVenue.setCity(venue.getCity());
+        Venue newVenue = modelMapper.map(venue, Venue.class);
         newVenue.setAddress(address.get());
-        newVenue.setDescription(venue.getDescription());
 
         return venueRepository.save(newVenue);
     }

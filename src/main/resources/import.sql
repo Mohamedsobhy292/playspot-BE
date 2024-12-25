@@ -23,4 +23,4 @@ INSERT INTO booking_status(name) VALUES ('CONFIRMED');
 INSERT INTO booking_status(name) VALUES ('CANCELED');
 
 
-INSERT INTO court(id, venue_id, court_type_id, name) VALUES (1, 1, 1, 'hall 1');
+/* INSERT INTO court(id, venue_id, court_type_id, name) VALUES (1, 1, 1, 'hall 1'); */

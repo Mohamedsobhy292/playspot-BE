@@ -33,4 +33,6 @@ public class Venue {
 
     private String description;
 
+    // getters and setters
+
 }
