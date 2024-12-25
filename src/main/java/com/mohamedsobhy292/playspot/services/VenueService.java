@@ -24,15 +24,15 @@ public class VenueService {
     }
 
     public Venue save(VenueDTO venue) {
-        Optional<Address> address = addressRepository.findById(Long.parseLong(venue.address_id));
-        System.out.println(venue.address_id);
+        Optional<Address> address = addressRepository.findById(Long.parseLong(venue.getAddress_id()));
+        System.out.println(venue.getAddress_id());
         System.out.println(address);
 
         Venue newVenue = new Venue();
-        newVenue.setName(venue.name);
-        newVenue.setCity(venue.city);
+        newVenue.setName(venue.getName());
+        newVenue.setCity(venue.getCity());
         newVenue.setAddress(address.get());
-        newVenue.setDescription(venue.description);
+        newVenue.setDescription(venue.getDescription());
 
         return venueRepository.save(newVenue);
     }
