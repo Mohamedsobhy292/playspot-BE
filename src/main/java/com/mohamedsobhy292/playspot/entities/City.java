@@ -1,21 +1,23 @@
 package com.mohamedsobhy292.playspot.entities;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-@Entity(name = "Venue")
-@Builder
-public class Venue {
+@Entity(name = "City")
+public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,13 +26,7 @@ public class Venue {
 
     @Column(nullable = false, unique = true)
     private String name;
-    @Column(nullable = false)
-    private String city;
 
-    @OneToOne()
-    @JoinColumn(name = "address_id")
-    private Address address;
-
-    private String description;
-
+    @ManyToOne(optional = false)
+    private Country country;
 }
