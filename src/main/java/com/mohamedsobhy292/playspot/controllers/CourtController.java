@@ -1,8 +1,10 @@
 package com.mohamedsobhy292.playspot.controllers;
 
 import com.mohamedsobhy292.playspot.services.CourtService;
+import com.mohamedsobhy292.playspot.DTO.CourtDTO;
 import com.mohamedsobhy292.playspot.entities.Court;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +31,16 @@ public class CourtController {
     }
 
     @PostMapping()
-    ResponseEntity<?> save(@RequestBody Court court) {
+    ResponseEntity<?> save(@RequestBody CourtDTO courtDTO) {
         try {
-            Court savedCourt = courtService.save(court);
+            Court savedCourt = courtService.save(courtDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedCourt);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new HashMap<String, String>() {
+                {
+                    put("message", e.getMessage());
+                }
+            });
         }
     }
 

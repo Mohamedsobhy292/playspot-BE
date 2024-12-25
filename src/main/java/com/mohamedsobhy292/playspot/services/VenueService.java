@@ -8,10 +8,11 @@ import com.mohamedsobhy292.playspot.repositories.VenueRepository;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,8 +44,10 @@ public class VenueService {
         return venueRepository.save(newVenue);
     }
 
-    public List<Venue> findAll() {
-        return venueRepository.findAll();
+    public Page<Venue> findAll(Integer page, Integer size) {
+        Pageable paging = PageRequest.of(page, size);
+
+        return venueRepository.findAll(paging);
     }
 
 }

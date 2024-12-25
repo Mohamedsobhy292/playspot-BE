@@ -25,8 +25,8 @@ public class Court {
     @JoinColumn(nullable = false)
     private Venue venue;
 
-    @OneToOne()
-    @JoinColumn(nullable = false)
-    private CourtType courtType;
+    // @OneToOne()
+    // @JoinColumn(nullable = false)
+    // private CourtType courtType;
 
 }

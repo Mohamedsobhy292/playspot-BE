@@ -29,4 +29,5 @@ public class City {
 
     @ManyToOne(optional = false)
     private Country country;
+
 }
