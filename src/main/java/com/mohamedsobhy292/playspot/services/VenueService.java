@@ -19,7 +19,6 @@ public class VenueService {
     private final VenueRepository venueRepository;
     private final AddressRepository addressRepository;
 
-    @Autowired
     public VenueService(VenueRepository venueRepository, AddressRepository addressRepository) {
         this.venueRepository = venueRepository;
         this.addressRepository = addressRepository;
@@ -29,7 +28,14 @@ public class VenueService {
     private ModelMapper modelMapper;
 
     public Venue save(VenueDTO venue) {
+        if (venue.getAddress_id() == null) {
+            throw new RuntimeException("Address ID is required");
+        }
         Optional<Address> address = addressRepository.findById(Long.parseLong(venue.getAddress_id()));
+
+        if (address.isEmpty()) {
+            throw new RuntimeException("Address not found");
+        }
 
         Venue newVenue = modelMapper.map(venue, Venue.class);
         newVenue.setAddress(address.get());

@@ -3,11 +3,11 @@ package com.mohamedsobhy292.playspot.controllers;
 import com.mohamedsobhy292.playspot.services.AddressService;
 import com.mohamedsobhy292.playspot.services.VenueService;
 import com.mohamedsobhy292.playspot.DTO.VenueDTO;
-import com.mohamedsobhy292.playspot.entities.Address;
+
 import com.mohamedsobhy292.playspot.entities.Venue;
 
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,21 +27,23 @@ public class VenueController {
 
     @Autowired
     private final VenueService venueService;
-    // private final AddressService addressService;
 
     public VenueController(VenueService venueService, AddressService addressService) {
         this.venueService = venueService;
-        // this.addressService = addressService;
+
     }
 
     @PostMapping()
     ResponseEntity<?> saveVenue(@RequestBody VenueDTO venue) {
         try {
-
             Venue savedVenue = venueService.save(venue);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedVenue);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new HashMap<String, String>() {
+                {
+                    put("message", e.getMessage());
+                }
+            });
         }
     }
 
