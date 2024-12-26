@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mohamedsobhy292.playspot.DTO.CourtDTO;
-import com.mohamedsobhy292.playspot.entities.Address;
 import com.mohamedsobhy292.playspot.entities.Court;
 import com.mohamedsobhy292.playspot.entities.Venue;
 import com.mohamedsobhy292.playspot.repositories.CourtRepository;
@@ -36,10 +35,16 @@ public class CourtService {
             throw new RuntimeException("Venue is required");
         }
 
-        Optional<Venue> venue = venueRepository.findById((Long.parseLong(courtDTO.getVenue_id())));
+        Optional<Venue> venue = venueRepository.findById((courtDTO.getVenue_id()));
 
         if (venue.isEmpty()) {
             throw new RuntimeException("venue not found");
+        }
+
+        Court AlreadyExists = courtRepository.findByVenueIdAndName(courtDTO.getVenue_id(), courtDTO.getName());
+
+        if (AlreadyExists != null) {
+            throw new RuntimeException("Court with same name already exists");
         }
 
         Court newCourt = modelMapper.map(courtDTO, Court.class);

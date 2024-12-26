@@ -10,4 +10,6 @@ public interface CourtRepository extends JpaRepository<Court, Long> {
 
     List<Court> findAllByVenueId(Long venueId);
 
+    Court findByVenueIdAndName(Long venueId, String name);
+
 }

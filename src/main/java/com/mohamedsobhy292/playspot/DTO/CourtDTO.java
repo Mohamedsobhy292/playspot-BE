@@ -8,5 +8,5 @@ import lombok.Setter;
 public class CourtDTO {
     private Long id;
     private String name;
-    private String venue_id;
+    private Long venue_id;
 }
