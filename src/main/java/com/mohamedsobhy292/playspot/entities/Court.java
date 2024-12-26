@@ -1,5 +1,7 @@
 package com.mohamedsobhy292.playspot.entities;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,8 +27,8 @@ public class Court {
     @JoinColumn(nullable = false)
     private Venue venue;
 
-    // @OneToOne()
-    // @JoinColumn(nullable = false)
-    // private CourtType courtType;
+    @ManyToOne()
+    @JoinColumn(nullable = false, name = "court_type_id")
+    private CourtType courtType;
 
 }

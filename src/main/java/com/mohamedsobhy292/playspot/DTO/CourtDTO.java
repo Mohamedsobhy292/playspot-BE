@@ -9,4 +9,5 @@ public class CourtDTO {
     private Long id;
     private String name;
     private Long venue_id;
+    private Long courtType_id;
 }

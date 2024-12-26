@@ -9,18 +9,23 @@ import org.springframework.stereotype.Service;
 
 import com.mohamedsobhy292.playspot.DTO.CourtDTO;
 import com.mohamedsobhy292.playspot.entities.Court;
+import com.mohamedsobhy292.playspot.entities.CourtType;
 import com.mohamedsobhy292.playspot.entities.Venue;
 import com.mohamedsobhy292.playspot.repositories.CourtRepository;
+import com.mohamedsobhy292.playspot.repositories.CourtTypeRepository;
 import com.mohamedsobhy292.playspot.repositories.VenueRepository;
 
 @Service
 public class CourtService {
     private final CourtRepository courtRepository;
     private final VenueRepository venueRepository;
+    private final CourtTypeRepository courtTypeRepository;
 
-    public CourtService(CourtRepository courtRepository, VenueRepository venueRepository) {
+    public CourtService(CourtRepository courtRepository, VenueRepository venueRepository,
+            CourtTypeRepository courtTypeRepository) {
         this.courtRepository = courtRepository;
         this.venueRepository = venueRepository;
+        this.courtTypeRepository = courtTypeRepository;
     }
 
     @Autowired
@@ -36,6 +41,7 @@ public class CourtService {
         }
 
         Optional<Venue> venue = venueRepository.findById((courtDTO.getVenue_id()));
+        Optional<CourtType> courtType = courtTypeRepository.findById((courtDTO.getCourtType_id()));
 
         if (venue.isEmpty()) {
             throw new RuntimeException("venue not found");
@@ -49,6 +55,7 @@ public class CourtService {
 
         Court newCourt = modelMapper.map(courtDTO, Court.class);
         newCourt.setVenue(venue.get());
+        newCourt.setCourtType(courtType.get());
         return courtRepository.save(newCourt);
     }
 
