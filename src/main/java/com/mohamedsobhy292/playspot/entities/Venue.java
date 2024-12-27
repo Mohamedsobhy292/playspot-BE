@@ -1,5 +1,8 @@
 package com.mohamedsobhy292.playspot.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +17,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity(name = "Venue")
-@Builder
 public class Venue {
 
     @Id
@@ -33,6 +35,7 @@ public class Venue {
 
     private String description;
 
-    // getters and setters
+    @OneToMany(mappedBy = "venue", fetch = FetchType.LAZY)
+    private List<Court> courts = new ArrayList<>();
 
 }

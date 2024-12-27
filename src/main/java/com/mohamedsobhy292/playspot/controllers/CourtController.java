@@ -44,10 +44,10 @@ public class CourtController {
         }
     }
 
-    @GetMapping()
-    ResponseEntity<?> getAll(@RequestBody HashMap<String, String> venue) {
+    @GetMapping("/{id}")
+    ResponseEntity<?> getAll(@PathVariable String id) {
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(courtService.findAll(venue.get("venue_id")));
+            return ResponseEntity.status(HttpStatus.OK).body(courtService.findAll(id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
