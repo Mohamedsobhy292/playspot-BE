@@ -26,7 +26,7 @@ public class Booking {
 
     @ManyToOne()
     @JoinColumn(nullable = false)
-    @ColumnDefault("1")
+    // @ColumnDefault("1")
     private BookingStatus bookingStatus;
 
 }

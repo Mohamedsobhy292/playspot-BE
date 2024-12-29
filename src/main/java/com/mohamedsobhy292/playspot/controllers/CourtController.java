@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
 @RequestMapping("/courts")
-@CrossOrigin(origins = "http://localhost:3000")
 public class CourtController {
 
     @Autowired
