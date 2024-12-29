@@ -1,7 +1,5 @@
 package com.mohamedsobhy292.playspot.entities;
 
-import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 
 import jakarta.persistence.*;
@@ -28,24 +26,24 @@ public class OpeningHours {
     Court court;
 
     private ZonedDateTime mondayOpeningTime;
-    private LocalDateTime mondayClosingTime;
+    private ZonedDateTime mondayClosingTime;
 
-    private LocalDateTime tuesdayOpeningTime;
-    private LocalDateTime tuesdayClosingTime;
+    private ZonedDateTime tuesdayOpeningTime;
+    private ZonedDateTime tuesdayClosingTime;
 
-    private LocalDateTime wednesdayOpeningTime;
-    private LocalDateTime wednesdayClosingTime;
+    private ZonedDateTime wednesdayOpeningTime;
+    private ZonedDateTime wednesdayClosingTime;
 
-    private LocalDateTime thursdayOpeningTime;
-    private LocalDateTime thursdayClosingTime;
+    private ZonedDateTime thursdayOpeningTime;
+    private ZonedDateTime thursdayClosingTime;
 
-    private LocalDateTime fridayOpeningTime;
-    private LocalDateTime fridayClosingTime;
+    private ZonedDateTime fridayOpeningTime;
+    private ZonedDateTime fridayClosingTime;
 
-    private LocalDateTime saturdayOpeningTime;
-    private LocalDateTime saturdayClosingTime;
+    private ZonedDateTime saturdayOpeningTime;
+    private ZonedDateTime saturdayClosingTime;
 
-    private LocalDateTime sundayOpeningTime;
-    private LocalDateTime sundayClosingTime;
+    private ZonedDateTime sundayOpeningTime;
+    private ZonedDateTime sundayClosingTime;
 
 }
