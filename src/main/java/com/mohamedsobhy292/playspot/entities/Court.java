@@ -17,7 +17,7 @@ public class Court {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false, columnDefinition = "serial")
+    @Column(updatable = false, columnDefinition = "serial")
     private Long id;
 
     @Column(nullable = false)

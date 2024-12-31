@@ -1,7 +1,11 @@
 package com.mohamedsobhy292.playspot.entities;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,7 +25,7 @@ public class Venue {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false, columnDefinition = "serial")
+    @Column(updatable = false, columnDefinition = "serial")
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -37,5 +41,13 @@ public class Venue {
 
     @OneToMany(mappedBy = "venue", fetch = FetchType.LAZY)
     private List<Court> courts = new ArrayList<>();
+
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
 
 }
