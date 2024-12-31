@@ -33,6 +33,7 @@ public class CourtService {
 
     public List<Court> findAll(String venueId) {
         return courtRepository.findAllByVenueId(Long.parseLong(venueId));
+
     }
 
     public Court save(CourtDTO courtDTO) {

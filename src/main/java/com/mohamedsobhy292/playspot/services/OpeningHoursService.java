@@ -18,6 +18,9 @@ import com.mohamedsobhy292.playspot.entities.Court;
 import com.mohamedsobhy292.playspot.entities.OpeningHours;
 import com.mohamedsobhy292.playspot.repositories.CourtRepository;
 import com.mohamedsobhy292.playspot.repositories.OpeningHoursRepository;
+
+import jakarta.transaction.Transactional;
+
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -95,70 +98,32 @@ public class OpeningHoursService {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Transactional
     public OpeningHours save(OpeningHoursDTO openingHoursDTO) {
 
         if (openingHoursDTO.getCourt_id() == null) {
             throw new RuntimeException("Court ID is required");
         }
 
-        Long court_id = openingHoursDTO.getCourt_id();
-
-        Optional<Court> court = courtRepository.findById((court_id));
-
-        if (court.isEmpty()) {
-            throw new RuntimeException("court not found");
-        }
-
+        // map the DTO to the entity
         OpeningHours mappedOpeningHours = modelMapper.map(openingHoursDTO, OpeningHours.class);
 
+        // convert the opening and closing times to UTC
         OpeningHours mappedOpeningHoursToSave = convertOpeningAndClosingTimes(mappedOpeningHours, openingHoursDTO);
 
-        OpeningHours newOpeningHours = new OpeningHours();
+        // save the opening hours
+        OpeningHours savedEntity = openingHoursRepository.save(mappedOpeningHoursToSave);
 
-        // Map<String, ZonedDateTime> parsedTimes = new HashMap<>();
+        // should update the court with the opening hours
+        Optional<Court> court = courtRepository.findById(openingHoursDTO.getCourt_id());
+        if (court.isPresent()) {
+            court.get().setOpeningHours(savedEntity);
+            courtRepository.save(court.get());
+        } else {
+            throw new RuntimeException("Court not found");
+        }
 
-        // HashMap<String, String> timeFields = new HashMap<String, String>();
-        // timeFields.put("mondayOpeningTime", openingHoursDTO.getMondayOpeningTime());
-        // timeFields.put("tuesdayOpeningTime",
-        // openingHoursDTO.getTuesdayOpeningTime());
-        // timeFields.put("wednesdayOpeningTime",
-        // openingHoursDTO.getWednesdayOpeningTime());
-
-        // ZonedDateTime mondayOpeningTime =
-        // convertDateToUTC(openingHoursDTO.getMondayOpeningTime());
-
-        // for (Map.Entry<String, String> entry : timeFields.entrySet()) {
-        // String fieldName = entry.getKey();
-        // String timeValue = entry.getValue();
-        // System.out.println(fieldName);
-
-        // if (timeValue == null) {
-        // continue;
-        // }
-
-        // // ZonedDateTime parsDateTime = parsedTimes.put(fieldName,
-        // // convertDateToUTC(timeValue));
-        // String setterName = "set" + fieldName.substring(0, 1).toUpperCase() +
-        // fieldName.substring(1);
-        // System.out.println(setterName);
-        // try {
-        // Method setterMethod = OpeningHours.class.getMethod(setterName,
-        // ZonedDateTime.class);
-        // setterMethod.invoke(newOpeningHours, convertDateToUTC(timeValue));
-        // } catch (NoSuchMethodException | SecurityException | IllegalAccessException |
-        // IllegalArgumentException
-        // | InvocationTargetException e) {
-        // // TODO Auto-generated catch block
-        // e.printStackTrace();
-        // }
-
-        // }
-
-        // newOpeningHours
-        // .setMondayOpeningTime(mondayOpeningTime);
-
-        mappedOpeningHoursToSave.setCourt(court.get());
-        return openingHoursRepository.save(mappedOpeningHoursToSave);
+        return savedEntity;
     }
 
 }

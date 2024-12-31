@@ -19,11 +19,7 @@ public class OpeningHours {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false, columnDefinition = "serial")
     private Long id;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    Court court;
 
     private ZonedDateTime mondayOpeningTime;
     private ZonedDateTime mondayClosingTime;

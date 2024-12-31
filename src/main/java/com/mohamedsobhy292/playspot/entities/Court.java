@@ -1,7 +1,5 @@
 package com.mohamedsobhy292.playspot.entities;
 
-import org.hibernate.annotations.ColumnDefault;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
@@ -33,5 +31,9 @@ public class Court {
     @ManyToOne()
     @JoinColumn(nullable = false, name = "court_type_id")
     private CourtType courtType;
+
+    @OneToOne()
+    @JoinColumn(nullable = true, name = "opening_hours_id")
+    private OpeningHours openingHours;
 
 }
