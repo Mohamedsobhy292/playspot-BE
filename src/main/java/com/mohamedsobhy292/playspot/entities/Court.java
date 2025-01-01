@@ -13,7 +13,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "Court")
-public class Court {
+public class Court extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

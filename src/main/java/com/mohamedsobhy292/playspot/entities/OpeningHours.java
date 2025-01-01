@@ -15,7 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity(name = "OpeningHours")
-public class OpeningHours {
+public class OpeningHours extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "BookingStatus")
-public class BookingStatus {
+public class BookingStatus extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

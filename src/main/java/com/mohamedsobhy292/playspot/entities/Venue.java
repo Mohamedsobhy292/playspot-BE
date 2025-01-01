@@ -21,7 +21,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @Entity(name = "Venue")
-public class Venue {
+public class Venue extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,13 +41,5 @@ public class Venue {
 
     @OneToMany(mappedBy = "venue", fetch = FetchType.LAZY)
     private List<Court> courts = new ArrayList<>();
-
-    @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    @Column(name = "updated_at", nullable = false)
-    private LocalDateTime updatedAt;
 
 }

@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "CourtType")
-public class CourtType {
+public class CourtType extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

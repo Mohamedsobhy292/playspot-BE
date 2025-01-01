@@ -17,7 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "City")
-public class City {
+public class City extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
