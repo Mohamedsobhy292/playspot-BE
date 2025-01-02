@@ -15,11 +15,6 @@ import lombok.Setter;
 @Entity(name = "Court")
 public class Court extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(updatable = false, columnDefinition = "serial")
-    private Long id;
-
     @Column(nullable = false)
     private String name;
 
@@ -32,7 +27,7 @@ public class Court extends BaseEntity {
     @JoinColumn(nullable = false, name = "court_type_id")
     private CourtType courtType;
 
-    @OneToOne()
+    @OneToOne(optional = true, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(nullable = true, name = "opening_hours_id")
     private OpeningHours openingHours;
 

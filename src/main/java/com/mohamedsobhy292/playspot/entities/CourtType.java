@@ -13,11 +13,6 @@ import lombok.Setter;
 @Entity(name = "CourtType")
 public class CourtType extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false, columnDefinition = "serial")
-    private Long id;
-
     @Column(nullable = false, unique = true)
     private String name;
 

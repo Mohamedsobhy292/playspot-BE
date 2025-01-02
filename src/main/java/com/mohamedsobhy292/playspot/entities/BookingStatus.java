@@ -13,11 +13,6 @@ import lombok.Setter;
 @Entity(name = "BookingStatus")
 public class BookingStatus extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false, columnDefinition = "serial")
-    private Long id;
-
     @Column(nullable = false)
     private String name;
 

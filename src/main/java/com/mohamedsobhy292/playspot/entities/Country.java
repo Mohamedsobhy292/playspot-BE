@@ -16,10 +16,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity(name = "Country")
 public class Country extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false, columnDefinition = "serial")
-    private Long id;
 
     @Column(nullable = false)
     private String name;

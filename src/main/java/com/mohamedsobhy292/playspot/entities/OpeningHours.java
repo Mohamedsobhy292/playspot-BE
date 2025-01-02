@@ -17,10 +17,6 @@ import lombok.ToString;
 @Entity(name = "OpeningHours")
 public class OpeningHours extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     private ZonedDateTime mondayOpeningTime;
     private ZonedDateTime mondayClosingTime;
 
@@ -41,5 +37,8 @@ public class OpeningHours extends BaseEntity {
 
     private ZonedDateTime sundayOpeningTime;
     private ZonedDateTime sundayClosingTime;
+
+    @OneToOne(mappedBy = "openingHours")
+    private Court court;
 
 }

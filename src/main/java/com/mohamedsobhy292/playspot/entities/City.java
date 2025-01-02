@@ -19,11 +19,6 @@ import lombok.Setter;
 @Entity(name = "City")
 public class City extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false, updatable = false, columnDefinition = "serial")
-    private Long id;
-
     @Column(nullable = false, unique = true)
     private String name;
 

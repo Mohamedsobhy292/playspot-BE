@@ -23,11 +23,6 @@ import lombok.ToString;
 @Entity(name = "Venue")
 public class Venue extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(updatable = false, columnDefinition = "serial")
-    private Long id;
-
     @Column(nullable = false, unique = true)
     private String name;
     @Column(nullable = false)
