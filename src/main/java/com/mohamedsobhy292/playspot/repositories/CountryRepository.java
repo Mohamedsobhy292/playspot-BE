@@ -1,6 +1,6 @@
 package com.mohamedsobhy292.playspot.repositories;
 
-import com.github.javafaker.Country;
+import com.mohamedsobhy292.playspot.entities.Country;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

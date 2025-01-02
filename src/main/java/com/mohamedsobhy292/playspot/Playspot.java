@@ -9,4 +9,5 @@ public class Playspot {
         SpringApplication.run(Playspot.class, args);
 
     }
+
 }

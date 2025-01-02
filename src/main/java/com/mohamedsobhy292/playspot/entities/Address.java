@@ -2,9 +2,7 @@ package com.mohamedsobhy292.playspot.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
@@ -23,7 +21,7 @@ public class Address extends BaseEntity {
     private String street;
 
     @Column(nullable = false)
-    private Integer zipCode;
+    private String zipCode;
 
     @ManyToOne
     @JoinColumn(name = "city_id")
