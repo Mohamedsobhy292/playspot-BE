@@ -40,8 +40,4 @@ public class OpeningHours extends BaseEntity {
     private ZonedDateTime sundayOpeningTime;
     private ZonedDateTime sundayClosingTime;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "openingHours")
-    private Court court;
-
 }

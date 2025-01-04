@@ -111,20 +111,17 @@ public class OpeningHoursService {
         // convert the opening and closing times to UTC
         OpeningHours mappedOpeningHoursToSave = convertOpeningAndClosingTimes(mappedOpeningHours, openingHoursDTO);
 
-        // ADD COURT
-        Optional<Court> court = courtRepository.findById(openingHoursDTO.getCourt_id());
-        if (court.isPresent()) {
-            mappedOpeningHoursToSave.setCourt(court.get());
-        } else {
-            throw new RuntimeException("Court not found");
-        }
-
         // save the opening hours
         OpeningHours savedEntity = openingHoursRepository.save(mappedOpeningHoursToSave);
 
         // should update the court with the opening hours
-        court.get().setOpeningHours(savedEntity);
-        courtRepository.save(court.get());
+        Optional<Court> court = courtRepository.findById(openingHoursDTO.getCourt_id());
+        if (court.isPresent()) {
+            court.get().setOpeningHours(savedEntity);
+            courtRepository.save(court.get());
+        } else {
+            throw new RuntimeException("Court not found");
+        }
 
         return savedEntity;
     }
