@@ -1,5 +1,9 @@
 package com.mohamedsobhy292.playspot.controllers;
 
+import java.util.HashMap;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,11 +23,16 @@ public class OpeningHoursController {
     }
 
     @PostMapping()
-    public OpeningHours save(@RequestBody OpeningHoursDTO openingHoursDTO) {
+    public ResponseEntity<?> save(@RequestBody OpeningHoursDTO openingHoursDTO) {
         try {
-            return OpeningHoursService.save(openingHoursDTO);
+            OpeningHours savedEntity = OpeningHoursService.save(openingHoursDTO);
+            return ResponseEntity.status(HttpStatus.OK).body(savedEntity);
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new HashMap<String, String>() {
+                {
+                    put("message", e.getMessage());
+                }
+            });
         }
     }
 

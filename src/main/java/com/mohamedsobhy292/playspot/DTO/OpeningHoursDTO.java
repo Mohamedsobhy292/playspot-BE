@@ -8,6 +8,7 @@ import lombok.Setter;
 public class OpeningHoursDTO {
     private Long id;
     private Long court_id;
+
     private String mondayOpeningTime;
     private String tuesdayOpeningTime;
     private String wednesdayOpeningTime;

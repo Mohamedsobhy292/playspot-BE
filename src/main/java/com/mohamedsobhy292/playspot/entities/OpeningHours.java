@@ -2,6 +2,8 @@ package com.mohamedsobhy292.playspot.entities;
 
 import java.time.ZonedDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,6 +40,7 @@ public class OpeningHours extends BaseEntity {
     private ZonedDateTime sundayOpeningTime;
     private ZonedDateTime sundayClosingTime;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "openingHours")
     private Court court;
 
