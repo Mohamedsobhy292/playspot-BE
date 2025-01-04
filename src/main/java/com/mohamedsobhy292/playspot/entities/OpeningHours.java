@@ -1,8 +1,6 @@
 package com.mohamedsobhy292.playspot.entities;
 
-import java.time.ZonedDateTime;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.time.LocalTime;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -19,25 +17,25 @@ import lombok.ToString;
 @Entity(name = "OpeningHours")
 public class OpeningHours extends BaseEntity {
 
-    private ZonedDateTime mondayOpeningTime;
-    private ZonedDateTime mondayClosingTime;
+    private LocalTime mondayOpeningTime;
+    private LocalTime mondayClosingTime;
 
-    private ZonedDateTime tuesdayOpeningTime;
-    private ZonedDateTime tuesdayClosingTime;
+    private LocalTime tuesdayOpeningTime;
+    private LocalTime tuesdayClosingTime;
 
-    private ZonedDateTime wednesdayOpeningTime;
-    private ZonedDateTime wednesdayClosingTime;
+    private LocalTime wednesdayOpeningTime;
+    private LocalTime wednesdayClosingTime;
 
-    private ZonedDateTime thursdayOpeningTime;
-    private ZonedDateTime thursdayClosingTime;
+    private LocalTime thursdayOpeningTime;
+    private LocalTime thursdayClosingTime;
 
-    private ZonedDateTime fridayOpeningTime;
-    private ZonedDateTime fridayClosingTime;
+    private LocalTime fridayOpeningTime;
+    private LocalTime fridayClosingTime;
 
-    private ZonedDateTime saturdayOpeningTime;
-    private ZonedDateTime saturdayClosingTime;
+    private LocalTime saturdayOpeningTime;
+    private LocalTime saturdayClosingTime;
 
-    private ZonedDateTime sundayOpeningTime;
-    private ZonedDateTime sundayClosingTime;
+    private LocalTime sundayOpeningTime;
+    private LocalTime sundayClosingTime;
 
 }

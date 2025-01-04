@@ -21,8 +21,7 @@ import com.mohamedsobhy292.playspot.repositories.OpeningHoursRepository;
 
 import jakarta.transaction.Transactional;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.LocalTime;
 
 @Service
 public class OpeningHoursService {
@@ -38,10 +37,9 @@ public class OpeningHoursService {
         return str.substring(0, 1).toUpperCase() + str.substring(1);
     }
 
-    private ZonedDateTime convertDateToUTC(String dateString) {
-        ZonedDateTime date = ZonedDateTime.parse(dateString);
-        ZonedDateTime utcDateTime = date.withZoneSameInstant(ZoneId.of("UTC"));
-        return utcDateTime;
+    private LocalTime parseTime(String dateString) {
+        LocalTime time = LocalTime.parse(dateString);
+        return time;
     }
 
     private OpeningHours convertOpeningAndClosingTimes(OpeningHours newOpeningHours, OpeningHoursDTO openingHoursDTO) {
@@ -66,7 +64,7 @@ public class OpeningHoursService {
                 timeFields.put(day + "OpeningTime", openingTime);
                 timeFields.put(day + "ClosingTime", closingTime);
             } catch (Exception e) {
-                e.printStackTrace(); // Handle potential reflection errors
+                e.printStackTrace();
             }
         }
 
@@ -82,13 +80,12 @@ public class OpeningHoursService {
             String setterName = "set" + capitalize(fieldName);
 
             try {
-                Method setterMethod = OpeningHours.class.getMethod(setterName, ZonedDateTime.class);
-                setterMethod.invoke(newOpeningHours, convertDateToUTC(timeValue));
+                Method setterMethod = OpeningHours.class.getMethod(setterName, LocalTime.class);
+                setterMethod.invoke(newOpeningHours, parseTime(timeValue));
 
             } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException
                     | InvocationTargetException e) {
-
-                e.printStackTrace();
+                throw new RuntimeException("Error setting the opening and closing times");
             }
 
         }
