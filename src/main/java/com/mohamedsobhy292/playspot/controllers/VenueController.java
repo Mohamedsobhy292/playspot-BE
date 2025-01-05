@@ -2,11 +2,13 @@ package com.mohamedsobhy292.playspot.controllers;
 
 import com.mohamedsobhy292.playspot.services.AddressService;
 import com.mohamedsobhy292.playspot.services.VenueService;
+
+import jakarta.validation.Valid;
+
 import com.mohamedsobhy292.playspot.DTO.VenueDTO;
 
 import com.mohamedsobhy292.playspot.entities.Venue;
 
-import java.util.HashMap;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,13 +38,9 @@ public class VenueController {
     }
 
     @PostMapping()
-    ResponseEntity<?> saveVenue(@RequestBody VenueDTO venue) {
-        try {
-            Venue savedVenue = venueService.save(venue);
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedVenue);
-        } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
-        }
+    ResponseEntity<Venue> saveVenue(@Valid @RequestBody VenueDTO venue) {
+        Venue savedVenue = venueService.save(venue);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedVenue);
     }
 
     @GetMapping("/{id}")
