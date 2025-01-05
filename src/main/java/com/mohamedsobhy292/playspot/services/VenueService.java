@@ -3,6 +3,7 @@ package com.mohamedsobhy292.playspot.services;
 import com.mohamedsobhy292.playspot.DTO.VenueDTO;
 import com.mohamedsobhy292.playspot.entities.Address;
 import com.mohamedsobhy292.playspot.entities.Venue;
+import com.mohamedsobhy292.playspot.exceptions.BadRequestException;
 import com.mohamedsobhy292.playspot.exceptions.ResourceNotFoundException;
 import com.mohamedsobhy292.playspot.repositories.AddressRepository;
 import com.mohamedsobhy292.playspot.repositories.VenueRepository;
@@ -30,13 +31,10 @@ public class VenueService {
     private ModelMapper modelMapper;
 
     public Venue save(VenueDTO venue) {
-        if (venue.getAddress_id() == null) {
-            throw new RuntimeException("Address ID is required");
-        }
         Optional<Address> address = addressRepository.findById(Long.parseLong(venue.getAddress_id()));
 
         if (address.isEmpty()) {
-            throw new RuntimeException("Address not found");
+            throw new BadRequestException("Address not found");
         }
 
         Venue newVenue = modelMapper.map(venue, Venue.class);

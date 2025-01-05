@@ -15,6 +15,6 @@ public class VenueDTO {
     private String city;
     @NotBlank(message = "Address is mandatory")
     private String address_id;
-    @NotBlank(message = "description is mandatory")
+
     private String description;
 }
