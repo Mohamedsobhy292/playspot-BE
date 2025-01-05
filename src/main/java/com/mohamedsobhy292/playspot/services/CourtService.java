@@ -63,7 +63,7 @@ public class CourtService {
                 courtDTO.getName());
 
         if (AlreadyExists != null) {
-            throw new RuntimeException("Court with same name already exists");
+            throw new RuntimeException("Court with the same name already exists");
         }
 
         Court newCourt = modelMapper.map(courtDTO, Court.class);
