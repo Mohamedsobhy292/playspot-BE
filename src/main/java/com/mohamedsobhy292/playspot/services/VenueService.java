@@ -31,7 +31,10 @@ public class VenueService {
     private ModelMapper modelMapper;
 
     public Venue save(VenueDTO venue) {
-        Optional<Address> address = addressRepository.findById(Long.parseLong(venue.getAddress_id()));
+
+        Long addressId = venue.getAddress_id();
+
+        Optional<Address> address = addressRepository.findById(addressId);
 
         if (address.isEmpty()) {
             throw new BadRequestException("Address not found");

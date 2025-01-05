@@ -49,8 +49,8 @@ public class CourtService {
             throw new RuntimeException("Venue is required");
         }
 
-        Long venueId = Long.parseLong(courtDTO.getVenue_id());
-        Long courtTypeId = Long.parseLong(courtDTO.getCourt_type_id());
+        Long venueId = courtDTO.getVenue_id();
+        Long courtTypeId = courtDTO.getCourt_type_id();
 
         Optional<Venue> venue = venueRepository.findById(venueId);
         Optional<CourtType> courtType = courtTypeRepository.findById(courtTypeId);

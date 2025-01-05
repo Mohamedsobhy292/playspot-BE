@@ -1,7 +1,7 @@
 package com.mohamedsobhy292.playspot.DTO;
 
 import jakarta.validation.constraints.NotBlank;
-
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +12,10 @@ public class CourtDTO {
 
     @NotBlank(message = "Name is mandatory")
     private String name;
-    @NotBlank(message = "Address id is mandatory")
-    private String venue_id;
-    @NotBlank(message = "Court type id is mandatory")
-    private String court_type_id;
+
+    @NotNull(message = "Address id is mandatory")
+    private Long venue_id;
+
+    @NotNull(message = "Court type id is mandatory")
+    private Long court_type_id;
 }
