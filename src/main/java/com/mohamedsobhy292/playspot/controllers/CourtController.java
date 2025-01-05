@@ -1,6 +1,9 @@
 package com.mohamedsobhy292.playspot.controllers;
 
 import com.mohamedsobhy292.playspot.services.CourtService;
+
+import jakarta.validation.Valid;
+
 import com.mohamedsobhy292.playspot.DTO.CourtDTO;
 import com.mohamedsobhy292.playspot.entities.Court;
 
@@ -27,7 +30,7 @@ public class CourtController {
     }
 
     @PostMapping()
-    ResponseEntity<?> save(@RequestBody CourtDTO courtDTO) {
+    ResponseEntity<?> save(@Valid @RequestBody CourtDTO courtDTO) {
         Court savedCourt = courtService.save(courtDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCourt);
     }

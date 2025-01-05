@@ -49,14 +49,18 @@ public class CourtService {
             throw new RuntimeException("Venue is required");
         }
 
-        Optional<Venue> venue = venueRepository.findById((courtDTO.getVenue_id()));
-        Optional<CourtType> courtType = courtTypeRepository.findById((courtDTO.getCourtType_id()));
+        Long venueId = Long.parseLong(courtDTO.getVenue_id());
+        Long courtTypeId = Long.parseLong(courtDTO.getCourt_type_id());
+
+        Optional<Venue> venue = venueRepository.findById(venueId);
+        Optional<CourtType> courtType = courtTypeRepository.findById(courtTypeId);
 
         if (venue.isEmpty()) {
             throw new RuntimeException("venue not found");
         }
 
-        Court AlreadyExists = courtRepository.findByVenueIdAndName(courtDTO.getVenue_id(), courtDTO.getName());
+        Court AlreadyExists = courtRepository.findByVenueIdAndName(venueId,
+                courtDTO.getName());
 
         if (AlreadyExists != null) {
             throw new RuntimeException("Court with same name already exists");

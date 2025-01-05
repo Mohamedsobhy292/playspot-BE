@@ -12,7 +12,7 @@ public class VenueDTO {
 
     @NotBlank(message = "Name is mandatory")
     private String name;
-    private String city;
+
     @NotBlank(message = "Address is mandatory")
     private String address_id;
 
