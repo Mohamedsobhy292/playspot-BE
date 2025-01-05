@@ -10,6 +10,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface VenueRepository extends JpaRepository<Venue, Long> {
     Page<Venue> findAll(Pageable pageable);
 
-    Venue findVenueById(Long id);
+    // Venue findVenueById(Long id);
 
 }

@@ -11,6 +11,8 @@ import com.mohamedsobhy292.playspot.DTO.CourtDTO;
 import com.mohamedsobhy292.playspot.entities.Court;
 import com.mohamedsobhy292.playspot.entities.CourtType;
 import com.mohamedsobhy292.playspot.entities.Venue;
+import com.mohamedsobhy292.playspot.exceptions.BadRequestException;
+import com.mohamedsobhy292.playspot.exceptions.ResourceNotFoundException;
 import com.mohamedsobhy292.playspot.repositories.CourtRepository;
 import com.mohamedsobhy292.playspot.repositories.CourtTypeRepository;
 import com.mohamedsobhy292.playspot.repositories.VenueRepository;
@@ -32,7 +34,13 @@ public class CourtService {
     private ModelMapper modelMapper;
 
     public List<Court> findAll(String venueId) {
-        return courtRepository.findAllByVenueId(Long.parseLong(venueId));
+
+        venueRepository.findById(Long.parseLong(venueId))
+                .orElseThrow(() -> new BadRequestException("Venue not found"));
+
+        var courts = courtRepository.findAllByVenueId(Long.parseLong(venueId));
+
+        return courts;
 
     }
 

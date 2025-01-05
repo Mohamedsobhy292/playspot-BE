@@ -7,6 +7,7 @@ import com.mohamedsobhy292.playspot.DTO.VenueDTO;
 import com.mohamedsobhy292.playspot.entities.Venue;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,21 +41,17 @@ public class VenueController {
             Venue savedVenue = venueService.save(venue);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedVenue);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new HashMap<String, String>() {
-                {
-                    put("message", e.getMessage());
-                }
-            });
+            throw new RuntimeException(e.getMessage());
         }
     }
 
     @GetMapping("/{id}")
     ResponseEntity<?> getVenueById(@PathVariable Long id) {
         try {
-            Venue venue = venueService.findById(id);
+            Optional<Venue> venue = venueService.findById(id);
             return ResponseEntity.status(HttpStatus.OK).body(venue);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 
@@ -66,7 +63,7 @@ public class VenueController {
             Page<Venue> venues = venueService.findAll(page, size);
             return ResponseEntity.status(HttpStatus.OK).body(venues);
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

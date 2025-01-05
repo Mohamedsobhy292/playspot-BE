@@ -3,6 +3,7 @@ package com.mohamedsobhy292.playspot.services;
 import com.mohamedsobhy292.playspot.DTO.VenueDTO;
 import com.mohamedsobhy292.playspot.entities.Address;
 import com.mohamedsobhy292.playspot.entities.Venue;
+import com.mohamedsobhy292.playspot.exceptions.ResourceNotFoundException;
 import com.mohamedsobhy292.playspot.repositories.AddressRepository;
 import com.mohamedsobhy292.playspot.repositories.VenueRepository;
 
@@ -50,8 +51,15 @@ public class VenueService {
         return venueRepository.findAll(paging);
     }
 
-    public Venue findById(Long id) {
-        return venueRepository.findVenueById(id);
+    public Optional<Venue> findById(Long id) {
+        Optional<Venue> venue = venueRepository.findById(id);
+
+        if (venue.isEmpty()) {
+            throw new ResourceNotFoundException("Venue not found");
+        }
+
+        return venue;
+
     }
 
 }
