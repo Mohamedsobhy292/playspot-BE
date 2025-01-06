@@ -12,7 +12,6 @@ import com.mohamedsobhy292.playspot.entities.Court;
 import com.mohamedsobhy292.playspot.entities.CourtType;
 import com.mohamedsobhy292.playspot.entities.Venue;
 import com.mohamedsobhy292.playspot.exceptions.BadRequestException;
-import com.mohamedsobhy292.playspot.exceptions.ResourceNotFoundException;
 import com.mohamedsobhy292.playspot.repositories.CourtRepository;
 import com.mohamedsobhy292.playspot.repositories.CourtTypeRepository;
 import com.mohamedsobhy292.playspot.repositories.VenueRepository;
@@ -33,7 +32,7 @@ public class CourtService {
     @Autowired
     private ModelMapper modelMapper;
 
-    public List<Court> findAll(String venueId) {
+    public List<Court> getAllCourtsForVenue(String venueId) {
 
         venueRepository.findById(Long.parseLong(venueId))
                 .orElseThrow(() -> new BadRequestException("Venue not found"));
@@ -44,7 +43,7 @@ public class CourtService {
 
     }
 
-    public Court save(CourtDTO courtDTO) {
+    public Court addCourt(CourtDTO courtDTO) {
         if (courtDTO.getVenue_id() == null) {
             throw new RuntimeException("Venue is required");
         }

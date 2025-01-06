@@ -31,12 +31,12 @@ public class CourtController {
 
     @PostMapping()
     ResponseEntity<?> save(@Valid @RequestBody CourtDTO courtDTO) {
-        Court savedCourt = courtService.save(courtDTO);
+        Court savedCourt = courtService.addCourt(courtDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCourt);
     }
 
     @GetMapping("/{id}")
     ResponseEntity<?> getAll(@PathVariable String id) {
-        return ResponseEntity.status(HttpStatus.OK).body(courtService.findAll(id));
+        return ResponseEntity.status(HttpStatus.OK).body(courtService.getAllCourtsForVenue(id));
     }
 }

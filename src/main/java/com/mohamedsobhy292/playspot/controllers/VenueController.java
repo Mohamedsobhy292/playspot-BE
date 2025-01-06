@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController()
 @RequestMapping("/venues")
-
 public class VenueController {
 
     @Autowired
@@ -39,14 +38,14 @@ public class VenueController {
 
     @PostMapping()
     ResponseEntity<Venue> saveVenue(@Valid @RequestBody VenueDTO venue) {
-        Venue savedVenue = venueService.save(venue);
+        Venue savedVenue = venueService.addVenue(venue);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedVenue);
     }
 
     @GetMapping("/{id}")
     ResponseEntity<?> getVenueById(@PathVariable Long id) {
         try {
-            Optional<Venue> venue = venueService.findById(id);
+            Optional<Venue> venue = venueService.getVenueById(id);
             return ResponseEntity.status(HttpStatus.OK).body(venue);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
@@ -58,7 +57,7 @@ public class VenueController {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         try {
-            Page<Venue> venues = venueService.findAll(page, size);
+            Page<Venue> venues = venueService.getAllVenues(page, size);
             return ResponseEntity.status(HttpStatus.OK).body(venues);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());

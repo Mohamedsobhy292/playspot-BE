@@ -22,15 +22,15 @@ public class VenueService {
     private final VenueRepository venueRepository;
     private final AddressRepository addressRepository;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     public VenueService(VenueRepository venueRepository, AddressRepository addressRepository) {
         this.venueRepository = venueRepository;
         this.addressRepository = addressRepository;
     }
 
-    @Autowired
-    private ModelMapper modelMapper;
-
-    public Venue save(VenueDTO venue) {
+    public Venue addVenue(VenueDTO venue) {
 
         Long addressId = venue.getAddress_id();
 
@@ -40,19 +40,30 @@ public class VenueService {
             throw new BadRequestException("Address not found");
         }
 
+        Venue AlreadyExistVenue = venueRepository.findByName(venue.getName());
+        Venue AlreadyExistAddress = venueRepository.findByAddressId(venue.getAddress_id());
+
+        if (AlreadyExistVenue != null) {
+            throw new BadRequestException("Venue already exists");
+        }
+
+        if (AlreadyExistAddress != null) {
+            throw new BadRequestException("venue in the same address already exists");
+        }
+
         Venue newVenue = modelMapper.map(venue, Venue.class);
         newVenue.setAddress(address.get());
 
         return venueRepository.save(newVenue);
     }
 
-    public Page<Venue> findAll(Integer page, Integer size) {
+    public Page<Venue> getAllVenues(Integer page, Integer size) {
         Pageable paging = PageRequest.of(page, size);
 
         return venueRepository.findAll(paging);
     }
 
-    public Optional<Venue> findById(Long id) {
+    public Optional<Venue> getVenueById(Long id) {
         Optional<Venue> venue = venueRepository.findById(id);
 
         if (venue.isEmpty()) {

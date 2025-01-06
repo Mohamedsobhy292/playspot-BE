@@ -71,7 +71,7 @@ public class DatabaseSeeder implements CommandLineRunner {
 
         // CITIES
 
-        for (int j = 0; j < max * 2; j++) {
+        for (int j = 0; j < max; j++) {
             City city = new City();
             city.setName(faker.address().city());
             city.setCountry(countries.get(faker.number().numberBetween(0, countries.size())));
@@ -87,22 +87,22 @@ public class DatabaseSeeder implements CommandLineRunner {
 
                 // VENUES
 
-                // Venue venue = new Venue(
-                // faker.company().name(),
-                // address,
-                // faker.lorem().paragraph(),
-                // new ArrayList<>());
-                // venues.add(venue);
+                Venue venue = new Venue(
+                        faker.company().name(),
+                        address,
+                        faker.lorem().paragraph(),
+                        new ArrayList<>());
+                venues.add(venue);
 
-                // for (int l = 0; l < max; l++) {
-                // Court court = new Court();
-                // court.setName(faker.company().name());
-                // court.setVenue(venue);
-                // court.setCourtType(courtTypes.get(faker.number().numberBetween(0,
-                // courtTypes.size())));
-                // courts.add(court);
+                for (int l = 0; l < max; l++) {
+                    Court court = new Court();
+                    court.setName(faker.company().name());
+                    court.setVenue(venue);
+                    court.setCourtType(courtTypes.get(faker.number().numberBetween(0,
+                            courtTypes.size())));
+                    courts.add(court);
 
-                // }
+                }
 
             }
         }
@@ -117,4 +117,5 @@ public class DatabaseSeeder implements CommandLineRunner {
         System.out.println("Database initialized!");
 
     }
+
 }
