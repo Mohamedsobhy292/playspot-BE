@@ -37,12 +37,10 @@ public class AddressController {
 
     @PostMapping()
     public ResponseEntity<?> save(@Valid @RequestBody AddressDTO addressDTO) {
-        try {
-            Address savedEntity = addressService.addAddress(addressDTO);
-            return ResponseEntity.status(HttpStatus.OK).body(savedEntity);
-        } catch (Exception e) {
-            throw new RuntimeException("Error in saving the entity");
-        }
+
+        Address savedEntity = addressService.addAddress(addressDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(savedEntity);
+
     }
 
 }

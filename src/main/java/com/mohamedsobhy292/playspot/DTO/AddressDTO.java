@@ -13,7 +13,7 @@ public class AddressDTO {
     @NotBlank(message = "Name is mandatory")
     private String street;
 
-    @NotBlank(message = "zip code  is mandatory")
+    @NotBlank(message = "zip code is mandatory")
     private String zipCode;
 
     @NotNull(message = "city id is mandatory")
