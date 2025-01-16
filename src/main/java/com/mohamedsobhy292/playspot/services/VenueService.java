@@ -1,5 +1,6 @@
 package com.mohamedsobhy292.playspot.services;
 
+import com.mohamedsobhy292.playspot.DTO.ResponseDTO;
 import com.mohamedsobhy292.playspot.DTO.VenueDTO;
 import com.mohamedsobhy292.playspot.entities.Address;
 import com.mohamedsobhy292.playspot.entities.Venue;
@@ -63,12 +64,8 @@ public class VenueService {
         return venueRepository.findAll(paging);
     }
 
-    public Optional<Venue> getVenueById(Long id) {
-        Optional<Venue> venue = venueRepository.findById(id);
-
-        if (venue.isEmpty()) {
-            throw new ResourceNotFoundException("Venue not found");
-        }
+    public ResponseDTO getVenueById(Long id) {
+        ResponseDTO venue = venueRepository.findVenueCustom(id);
 
         return venue;
 

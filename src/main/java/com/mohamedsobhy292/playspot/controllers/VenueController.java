@@ -5,6 +5,7 @@ import com.mohamedsobhy292.playspot.services.VenueService;
 
 import jakarta.validation.Valid;
 
+import com.mohamedsobhy292.playspot.DTO.ResponseDTO;
 import com.mohamedsobhy292.playspot.DTO.VenueDTO;
 
 import com.mohamedsobhy292.playspot.entities.Venue;
@@ -45,7 +46,7 @@ public class VenueController {
     @GetMapping("/{id}")
     ResponseEntity<?> getVenueById(@PathVariable Long id) {
         try {
-            Optional<Venue> venue = venueService.getVenueById(id);
+            ResponseDTO venue = venueService.getVenueById(id);
             return ResponseEntity.status(HttpStatus.OK).body(venue);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage());
