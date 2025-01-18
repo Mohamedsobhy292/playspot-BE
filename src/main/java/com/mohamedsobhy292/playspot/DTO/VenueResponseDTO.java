@@ -11,12 +11,20 @@ public class VenueResponseDTO {
     private String description;
     private AddressResponseDTO address;
 
-    public VenueResponseDTO(Long venueId, String name, String description, String street, String zipCode,
-            Long addressId, String city) {
+    public VenueResponseDTO(
+            Long venueId,
+            String name,
+            String description,
+            String street,
+            String zipCode,
+            Long addressId,
+            String city,
+            String country,
+            String countryCode) {
         this.venueId = venueId;
         this.name = name;
         this.description = description;
-        this.address = new AddressResponseDTO(street, zipCode, addressId, city);
+        this.address = new AddressResponseDTO(street, zipCode, addressId, city, country, countryCode);
     }
 
     @Getter
@@ -24,14 +32,19 @@ public class VenueResponseDTO {
     public static class AddressResponseDTO {
         private String street;
         private String zipCode;
-        private Long addressId;
+        private Long id;
         private String city;
+        private String country;
+        private String country_code;
 
-        public AddressResponseDTO(String street, String zipCode, Long addressId, String city) {
+        public AddressResponseDTO(String street, String zipCode, Long addressId, String city, String country,
+                String country_code) {
+            this.id = addressId;
             this.street = street;
             this.zipCode = zipCode;
-            this.addressId = addressId;
             this.city = city;
+            this.country = country;
+            this.country_code = country_code;
         }
 
     }

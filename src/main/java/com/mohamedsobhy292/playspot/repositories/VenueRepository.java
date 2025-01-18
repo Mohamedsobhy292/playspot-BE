@@ -18,17 +18,20 @@ public interface VenueRepository extends JpaRepository<Venue, Long> {
 
     @Query("""
                     SELECT new com.mohamedsobhy292.playspot.DTO.VenueResponseDTO(
-                       v.id,
-                       v.name,
-                       v.description,
-                       a.street,
-                       a.zipCode,
-                       a.id,
-                       c.name
+                     v.id,
+                     v.name,
+                     v.description,
+                     a.street,
+                     a.zipCode,
+                     a.id,
+                    c.name,
+                    co.name,
+                    co.code
                     )
                    FROM Venue v
                    LEFT JOIN Address a ON v.address.id = a.id
                    LEFT JOIN City c ON a.city.id = c.id
+                   LEFT JOIN Country co ON c.country.id = co.id
                    WHERE v.id = :id
             """)
     VenueResponseDTO findVenueCustom(@Param("id") Long id);
