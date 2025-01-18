@@ -1,6 +1,6 @@
 package com.mohamedsobhy292.playspot.services;
 
-import com.mohamedsobhy292.playspot.DTO.ResponseDTO;
+import com.mohamedsobhy292.playspot.DTO.VenueResponseDTO;
 import com.mohamedsobhy292.playspot.DTO.VenueDTO;
 import com.mohamedsobhy292.playspot.entities.Address;
 import com.mohamedsobhy292.playspot.entities.Venue;
@@ -58,14 +58,14 @@ public class VenueService {
         return venueRepository.save(newVenue);
     }
 
-    public Page<Venue> getAllVenues(Integer page, Integer size) {
+    public Page<VenueResponseDTO> getAllVenues(Integer page, Integer size) {
         Pageable paging = PageRequest.of(page, size);
 
-        return venueRepository.findAll(paging);
+        return venueRepository.findAllBy(paging);
     }
 
-    public ResponseDTO getVenueById(Long id) {
-        ResponseDTO venue = venueRepository.findVenueCustom(id);
+    public VenueResponseDTO getVenueById(Long id) {
+        VenueResponseDTO venue = venueRepository.findVenueCustom(id);
 
         return venue;
 
