@@ -1,5 +1,7 @@
 package com.mohamedsobhy292.playspot.services.projections;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +12,9 @@ public class VenueResponseDTO {
     private String name;
     private String description;
     private AddressResponseDTO address;
+    private Long courtId;
+    private String courtName;
+    private List<String> courtNames;
 
     public VenueResponseDTO(
             Long venueId,
@@ -20,11 +25,16 @@ public class VenueResponseDTO {
             Long addressId,
             String city,
             String country,
-            String countryCode) {
+            String countryCode,
+            Long courtId,
+            String courtName) {
         this.venueId = venueId;
         this.name = name;
         this.description = description;
         this.address = new AddressResponseDTO(street, zipCode, addressId, city, country, countryCode);
+        this.courtId = courtId;
+        this.courtName = courtName;
+
     }
 
     @Getter

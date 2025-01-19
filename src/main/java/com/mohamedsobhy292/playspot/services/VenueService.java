@@ -2,6 +2,7 @@ package com.mohamedsobhy292.playspot.services;
 
 import com.mohamedsobhy292.playspot.DTO.VenueDTO;
 import com.mohamedsobhy292.playspot.entities.Address;
+import com.mohamedsobhy292.playspot.entities.Court;
 import com.mohamedsobhy292.playspot.entities.Venue;
 import com.mohamedsobhy292.playspot.exceptions.BadRequestException;
 import com.mohamedsobhy292.playspot.exceptions.ResourceNotFoundException;
@@ -16,6 +17,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -65,9 +67,15 @@ public class VenueService {
     }
 
     public VenueResponseDTO getVenueById(Long id) {
-        VenueResponseDTO venue = venueRepository.findVenueCustom(id);
+        List<VenueResponseDTO> results = venueRepository.findVenueCustom(id);
 
-        return venue;
+        VenueResponseDTO firstResult = results.get(0);
+
+        List<String> courts = results.stream().map((venue) -> venue.getCourtName()).toList();
+
+        firstResult.setCourtNames(courts);
+
+        return firstResult;
 
     }
 
