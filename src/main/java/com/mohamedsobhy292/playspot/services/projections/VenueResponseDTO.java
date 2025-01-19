@@ -1,6 +1,7 @@
 package com.mohamedsobhy292.playspot.services.projections;
 
 import java.util.List;
+import java.util.Map;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,7 @@ public class VenueResponseDTO {
     private AddressResponseDTO address;
     private Long courtId;
     private String courtName;
-    private List<String> courtNames;
+    private List<Map<String, Object>> courts;
 
     public VenueResponseDTO(
             Long venueId,

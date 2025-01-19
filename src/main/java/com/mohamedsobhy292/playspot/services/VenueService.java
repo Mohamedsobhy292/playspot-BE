@@ -17,7 +17,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -71,9 +73,14 @@ public class VenueService {
 
         VenueResponseDTO firstResult = results.get(0);
 
-        List<String> courts = results.stream().map((venue) -> venue.getCourtName()).toList();
+        List<Map<String, Object>> courts = results.stream().map((venue) -> {
+            Map<String, Object> courtMap = new HashMap<>();
+            courtMap.put("id", venue.getCourtId());
+            courtMap.put("name", venue.getCourtName());
+            return courtMap;
+        }).toList();
 
-        firstResult.setCourtNames(courts);
+        firstResult.setCourts(courts);
 
         return firstResult;
 
