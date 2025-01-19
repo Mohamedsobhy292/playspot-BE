@@ -1,6 +1,5 @@
 package com.mohamedsobhy292.playspot.services;
 
-import com.mohamedsobhy292.playspot.DTO.VenueResponseDTO;
 import com.mohamedsobhy292.playspot.DTO.VenueDTO;
 import com.mohamedsobhy292.playspot.entities.Address;
 import com.mohamedsobhy292.playspot.entities.Venue;
@@ -8,6 +7,7 @@ import com.mohamedsobhy292.playspot.exceptions.BadRequestException;
 import com.mohamedsobhy292.playspot.exceptions.ResourceNotFoundException;
 import com.mohamedsobhy292.playspot.repositories.AddressRepository;
 import com.mohamedsobhy292.playspot.repositories.VenueRepository;
+import com.mohamedsobhy292.playspot.services.projections.VenueResponseDTO;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.mohamedsobhy292.playspot.DTO;
+package com.mohamedsobhy292.playspot.services.projections;
 
 import lombok.Getter;
 import lombok.Setter;

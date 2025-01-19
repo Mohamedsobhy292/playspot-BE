@@ -2,15 +2,13 @@ package com.mohamedsobhy292.playspot.controllers;
 
 import com.mohamedsobhy292.playspot.services.AddressService;
 import com.mohamedsobhy292.playspot.services.VenueService;
+import com.mohamedsobhy292.playspot.services.projections.VenueResponseDTO;
 
 import jakarta.validation.Valid;
 
-import com.mohamedsobhy292.playspot.DTO.VenueResponseDTO;
 import com.mohamedsobhy292.playspot.DTO.VenueDTO;
 
 import com.mohamedsobhy292.playspot.entities.Venue;
-
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -1,7 +1,5 @@
 package com.mohamedsobhy292.playspot.controllers;
 
-import java.util.HashMap;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

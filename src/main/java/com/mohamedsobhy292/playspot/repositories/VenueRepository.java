@@ -1,6 +1,6 @@
 package com.mohamedsobhy292.playspot.repositories;
 
-import com.mohamedsobhy292.playspot.DTO.VenueResponseDTO;
+import com.mohamedsobhy292.playspot.services.projections.VenueResponseDTO;
 import com.mohamedsobhy292.playspot.entities.Venue;
 
 import org.springframework.data.domain.Page;
@@ -17,7 +17,7 @@ public interface VenueRepository extends JpaRepository<Venue, Long> {
     Venue findByAddressId(Long addressId);
 
     @Query("""
-                    SELECT new com.mohamedsobhy292.playspot.DTO.VenueResponseDTO(
+                    SELECT new com.mohamedsobhy292.playspot.services.projections.VenueResponseDTO(
                      v.id,
                      v.name,
                      v.description,
