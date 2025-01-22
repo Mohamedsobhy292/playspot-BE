@@ -77,6 +77,7 @@ public class VenueService {
             Map<String, Object> courtMap = new HashMap<>();
             courtMap.put("id", venue.getCourtId());
             courtMap.put("name", venue.getCourtName());
+            courtMap.put("opening_hours_id", venue.getOpeningHoursId());
             return courtMap;
         }).toList();
 

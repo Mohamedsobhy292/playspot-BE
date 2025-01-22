@@ -16,6 +16,7 @@ public class VenueResponseDTO {
     private Long courtId;
     private String courtName;
     private List<Map<String, Object>> courts;
+    private Long openingHoursId;
 
     public VenueResponseDTO(
             Long venueId,
@@ -28,13 +29,15 @@ public class VenueResponseDTO {
             String country,
             String countryCode,
             Long courtId,
-            String courtName) {
+            String courtName,
+            Long openingHoursId) {
         this.venueId = venueId;
         this.name = name;
         this.description = description;
         this.address = new AddressResponseDTO(street, zipCode, addressId, city, country, countryCode);
         this.courtId = courtId;
         this.courtName = courtName;
+        this.openingHoursId = openingHoursId;
 
     }
 

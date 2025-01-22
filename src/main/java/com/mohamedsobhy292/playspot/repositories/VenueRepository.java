@@ -30,13 +30,15 @@ public interface VenueRepository extends JpaRepository<Venue, Long> {
                     co.name,
                     co.code,
                     cou.id,
-                    cou.name
+                    cou.name,
+                    oh.id
                     )
                    FROM Venue v
                    LEFT JOIN Address a ON v.address.id = a.id
                    LEFT JOIN City c ON a.city.id = c.id
                    LEFT JOIN Country co ON c.country.id = co.id
                    LEFT JOIN Court cou ON v.id = cou.venue.id
+                   LEFT JOIN OpeningHours oh ON cou.openingHours.id = oh.id
                    WHERE v.id = :id
             """)
     List<VenueResponseDTO> findVenueCustom(@Param("id") Long id);
